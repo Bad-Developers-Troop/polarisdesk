@@ -1,0 +1,91 @@
+@startuml
+
+package Users {
+  class User {
+    first_name : string
+    last_name : string
+    email : string
+  }
+
+  class Guest extends User {
+    not logged in
+    Total unknown
+    Asking for general information
+  }
+  
+  class Lead extends User {
+    not logged in
+    Can be identified by a code or by email
+    In the leading flow asking for assistance
+  }
+  class Customer extends User {
+    logged in
+    Is identified
+    Can be identified much better
+  }
+}
+
+package Staff {
+
+  class Department {
+    name : string
+  }
+
+  class Member {
+    email : string
+    first_name : string
+    last_name : string
+  }
+
+  class StaffDepartment {
+    Member : Member
+    Department : Department
+  }
+
+  StaffDepartment "1..1" --d--> Member
+  StaffDepartment "1..1" --d--> Department
+}
+
+package Tickets {
+
+  class Ticket {
+    The actual state of the ticket
+    ==
+    title : string
+    description : string
+    department : Department
+    user : User
+    assigned : Member
+    status : TicketStatus
+    date_creation
+    date_update
+  }
+
+  class TicketStatus {
+    name : string
+  }
+
+  class TicketHistory {
+    Saved state of a ticket
+    ==
+    ticket : Ticket
+    user : User
+    assigned : Member
+    status : TicketStatus
+    comment : string
+    date_creation : datetime
+  }
+
+  Ticket "1..1" --l--> User
+  Ticket "1..1" --l--> Member
+  Ticket "1..1" --l--> Department
+  Ticket "1..1" --l--> TicketStatus  
+  Ticket "1..n" --l--> TicketHistory
+
+  TicketHistory "1..1" --u--> Ticket
+  TicketHistory "1..1" --u--> User
+  TicketHistory "1..1" --u--> Member
+  TicketHistory "1..1" --u--> Department
+  TicketHistory "1..1" --u--> TicketStatus
+}
+@enduml
