@@ -7,11 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolarisDesk.IdentityProvide
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolarisDesk.Web", "PolarisDesk.Web\PolarisDesk.Web.csproj", "{60244DB8-6CFB-48BC-A540-E7D7420FBB79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolarisDesk.Shared", "PolarisDesk.Shared\PolarisDesk.Shared.csproj", "{272314E9-34B5-4CA9-9025-4BF85AED16CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolarisDesk.Shared", "PolarisDesk.Shared\PolarisDesk.Shared.csproj", "{272314E9-34B5-4CA9-9025-4BF85AED16CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolarisDesk.API", "PolarisDesk.API\PolarisDesk.API.csproj", "{355BF7B8-E432-4FE2-A6E4-6317AE593210}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolarisDesk.API", "PolarisDesk.API\PolarisDesk.API.csproj", "{355BF7B8-E432-4FE2-A6E4-6317AE593210}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolarisDesk.Models", "PolarisDesk.Models\PolarisDesk.Models.csproj", "{8913C315-060B-433C-B388-1054920EC79C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolarisDesk.Models", "PolarisDesk.Models\PolarisDesk.Models.csproj", "{8913C315-060B-433C-B388-1054920EC79C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolarisDesk.API.UnitTests", "..\test\unit-tests\PolarisDesk.API.UnitTests\PolarisDesk.API.UnitTests.csproj", "{81AA3D8D-4C1C-4BB8-A122-E4C0EFA62811}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F7C8B424-5E22-4D39-A438-6B27046C80B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C05A73D2-4F91-498A-9BF3-994D0039D09C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,9 +89,29 @@ Global
 		{8913C315-060B-433C-B388-1054920EC79C}.Release|x64.Build.0 = Release|Any CPU
 		{8913C315-060B-433C-B388-1054920EC79C}.Release|x86.ActiveCfg = Release|Any CPU
 		{8913C315-060B-433C-B388-1054920EC79C}.Release|x86.Build.0 = Release|Any CPU
+		{81AA3D8D-4C1C-4BB8-A122-E4C0EFA62811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81AA3D8D-4C1C-4BB8-A122-E4C0EFA62811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81AA3D8D-4C1C-4BB8-A122-E4C0EFA62811}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{81AA3D8D-4C1C-4BB8-A122-E4C0EFA62811}.Debug|x64.Build.0 = Debug|Any CPU
+		{81AA3D8D-4C1C-4BB8-A122-E4C0EFA62811}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{81AA3D8D-4C1C-4BB8-A122-E4C0EFA62811}.Debug|x86.Build.0 = Debug|Any CPU
+		{81AA3D8D-4C1C-4BB8-A122-E4C0EFA62811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81AA3D8D-4C1C-4BB8-A122-E4C0EFA62811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81AA3D8D-4C1C-4BB8-A122-E4C0EFA62811}.Release|x64.ActiveCfg = Release|Any CPU
+		{81AA3D8D-4C1C-4BB8-A122-E4C0EFA62811}.Release|x64.Build.0 = Release|Any CPU
+		{81AA3D8D-4C1C-4BB8-A122-E4C0EFA62811}.Release|x86.ActiveCfg = Release|Any CPU
+		{81AA3D8D-4C1C-4BB8-A122-E4C0EFA62811}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{827860CB-0507-4502-8D6A-A6EA1036927B} = {F7C8B424-5E22-4D39-A438-6B27046C80B1}
+		{60244DB8-6CFB-48BC-A540-E7D7420FBB79} = {F7C8B424-5E22-4D39-A438-6B27046C80B1}
+		{272314E9-34B5-4CA9-9025-4BF85AED16CE} = {F7C8B424-5E22-4D39-A438-6B27046C80B1}
+		{355BF7B8-E432-4FE2-A6E4-6317AE593210} = {F7C8B424-5E22-4D39-A438-6B27046C80B1}
+		{8913C315-060B-433C-B388-1054920EC79C} = {F7C8B424-5E22-4D39-A438-6B27046C80B1}
+		{81AA3D8D-4C1C-4BB8-A122-E4C0EFA62811} = {C05A73D2-4F91-498A-9BF3-994D0039D09C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD7409F8-C6FE-4A2E-8353-963E299BC316}
