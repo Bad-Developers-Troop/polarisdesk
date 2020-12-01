@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using IdentityModel;
 using IdentityServer4.Models;
 using System.Collections.Generic;
 
@@ -9,6 +10,16 @@ namespace PolarisDesk.IdentityProvider
 {
     public static class Config
     {
+        public static IEnumerable<ApiResource> Apis =>
+            new ApiResource[]
+            {
+                new ApiResource("polarisdeskapi", "PolarisDesk API")  {
+                             Scopes = {
+                                 "polarisdeskapi"
+                             }
+                         }
+            };
+
         public static IEnumerable<IdentityResource> IdentityResources =>
                    new IdentityResource[]
                    {

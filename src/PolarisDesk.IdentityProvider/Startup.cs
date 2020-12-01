@@ -50,16 +50,33 @@ namespace PolarisDesk.IdentityProvider
                 .AddInMemoryIdentityResources(Config.IdentityResources)
                 .AddInMemoryApiScopes(Config.ApiScopes)
                 .AddInMemoryClients(Config.Clients)
+                .AddInMemoryApiResources(Config.Apis)
                 .AddAspNetIdentity<ApplicationUser>();
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
 
+            //var builder = services.AddIdentityServer(options =>
+            //{
+            //    options.Events.RaiseErrorEvents = true;
+            //    options.Events.RaiseInformationEvents = true;
+            //    options.Events.RaiseFailureEvents = true;
+            //    options.Events.RaiseSuccessEvents = true;
+            //})
+            //    .AddInMemoryIdentityResources(Config.IdentityResources)
+            //    //.AddInMemoryApiResources(Config.Apis)
+            //    .AddInMemoryApiScopes(Config.ApiScopes)
+            //    .AddInMemoryClients(Config.Clients)
+            //    .AddAspNetIdentity<ApplicationUser>();
+
+            //// not recommended for production - you need to store your key material somewhere secure
+            //builder.AddDeveloperSigningCredential();
+
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
                     options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-                    
+
                     // register your IdentityServer with Google at https://console.developers.google.com
                     // enable the Google+ API
                     // set the redirect URI to https://localhost:5001/signin-google
