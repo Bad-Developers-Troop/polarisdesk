@@ -4,20 +4,20 @@ using System.Threading.Tasks;
 
 namespace PolarisDesk.API.Services
 {
-    
-    public class TicketService<T, K> : ICrudService<T, K>
+
+    public class TicketService<T, TKey> : ICrudService<T, TKey> where T: class
     {
-        public Task Create(K item)
+        public Task Create(T item)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task Delete(int id)
+        public Task Delete(TKey id)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<K> Get(int id)
+        public Task<T> Get(TKey id)
         {
             throw new System.NotImplementedException();
         }
@@ -27,7 +27,7 @@ namespace PolarisDesk.API.Services
             throw new System.NotImplementedException();
         }
 
-        public Task Update(K item)
+        public Task Update(T item)
         {
             throw new System.NotImplementedException();
         }

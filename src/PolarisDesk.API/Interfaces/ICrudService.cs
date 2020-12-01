@@ -2,12 +2,12 @@
 
 namespace PolarisDesk.API.Interface
 {
-    public interface ICrudService<T,K>
+    public interface ICrudService<T,Tkey> where T:class
     {
-        Task Create(K item);
-        Task Update(K item);
-        Task Delete(int id);
-        Task<K> Get(int id);
+        Task Create(T item);
+        Task Update(T item);
+        Task Delete(Tkey id);
+        Task<T> Get(Tkey id);
         Task<T[]> GetList();
      }
 
