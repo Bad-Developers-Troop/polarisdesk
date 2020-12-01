@@ -2,7 +2,7 @@
 
 namespace PolarisDesk.Models
 {
-    public class WeatherForecast
+    public class WeatherForecast : PolarisTicketBase
     {
         public DateTime Date { get; set; }
 
