@@ -348,3 +348,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Create conflicts on git and will be recreated and reseeded locally 
+/src/PolarisDesk.IdentityProvider/AspIdUsers.db
