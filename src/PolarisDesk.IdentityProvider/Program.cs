@@ -37,22 +37,16 @@ namespace PolarisDesk.IdentityProvider
 
             try
             {
-                var seed = args.Contains("/seed");
-                if (seed)
-                {
-                    args = args.Except(new[] { "/seed" }).ToArray();
-                }
-
                 var host = CreateHostBuilder(args).Build();
+                var config = host.Services.GetRequiredService<IConfiguration>();
+                bool seed = config.GetSection("Data").GetValue<bool>("Seed");
 
                 if (seed)
                 {
-                    Log.Information("Seeding database...");
-                    var config = host.Services.GetRequiredService<IConfiguration>();
                     var connectionString = config.GetConnectionString("DefaultConnection");
+                    Log.Information("Seeding database...");
                     SeedData.EnsureSeedData(connectionString);
                     Log.Information("Done seeding database.");
-                    return 0;
                 }
 
                 Log.Information("Starting host...");
