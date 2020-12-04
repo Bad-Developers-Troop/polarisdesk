@@ -1,42 +1,20 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">PolarisDesk.Web</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
+﻿@using Microsoft.AspNetCore.Components.Authorization
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="claims">
-                <span class="oi oi-plus" aria-hidden="true"></span> Claims
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-    </ul>
-</div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
+<AuthorizeView>
+    <Authorized>
+        <MudNavMenu Class="navmenu">
+            <MudNavLink Href="/" Icon="@Icons.Material.Dashboard">Dashboard</MudNavLink>
+            <MudNavLink Href="/fetchdata" Icon="@Icons.Material.WbSunny">Weather</MudNavLink>
+            <MudNavLink Href="/servers" Icon="@Icons.Material.Storage">Servers</MudNavLink>
+            <MudNavLink Href="/billing" Icon="@Icons.Material.Receipt">Billing</MudNavLink>
+            <MudNavGroup Title="Settings" Icon="@Icons.Material.Settings" Expanded="true">
+                <MudNavLink Href="/users" Icon="@Icons.Material.People">Users</MudNavLink>
+                <MudNavLink Href="/security" Icon="@Icons.Material.Security">Security</MudNavLink>
+            </MudNavGroup>
+            <MudNavLink Href="/about">About</MudNavLink>
+        </MudNavMenu>
+    </Authorized>
+    <NotAuthorized>
+        
+    </NotAuthorized>
+</AuthorizeView>
