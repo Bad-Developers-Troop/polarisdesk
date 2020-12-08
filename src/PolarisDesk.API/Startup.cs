@@ -34,7 +34,13 @@ namespace PolarisDesk.API
                     options.Audience = "polarisdeskapi";
                 });
 
+
+            //Dep
             services.AddTransient<ICrudService<Ticket,Guid>, TicketService<Ticket, Guid>>();
+            services.AddTransient<ICrudService<TicketStatus, Guid>, TicketStatusService<TicketStatus, Guid>>();
+            services.AddTransient<ICrudService<TicketPriority, Guid>, TicketPriorityService<TicketPriority, Guid>>();
+            services.AddTransient<ICrudService<Customer, Guid>, CustomerService<Customer, Guid>>();
+
 
             services.AddSwaggerGen(c =>
             {

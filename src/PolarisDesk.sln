@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolarisDesk.IdentityProvide
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolarisDesk.Web", "PolarisDesk.Web\PolarisDesk.Web.csproj", "{60244DB8-6CFB-48BC-A540-E7D7420FBB79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolarisDesk.Shared", "PolarisDesk.Shared\PolarisDesk.Shared.csproj", "{272314E9-34B5-4CA9-9025-4BF85AED16CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolarisDesk.Shared", "PolarisDesk.Shared\PolarisDesk.Shared.csproj", "{272314E9-34B5-4CA9-9025-4BF85AED16CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolarisDesk.API", "PolarisDesk.API\PolarisDesk.API.csproj", "{355BF7B8-E432-4FE2-A6E4-6317AE593210}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolarisDesk.API", "PolarisDesk.API\PolarisDesk.API.csproj", "{355BF7B8-E432-4FE2-A6E4-6317AE593210}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolarisDesk.Models", "PolarisDesk.Models\PolarisDesk.Models.csproj", "{8913C315-060B-433C-B388-1054920EC79C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolarisDesk.Models", "PolarisDesk.Models\PolarisDesk.Models.csproj", "{8913C315-060B-433C-B388-1054920EC79C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
