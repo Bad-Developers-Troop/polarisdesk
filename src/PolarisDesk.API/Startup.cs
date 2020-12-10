@@ -36,11 +36,19 @@ namespace PolarisDesk.API
 
 
             //Dep
-            services.AddTransient<ICrudService<Ticket,Guid>, TicketService<Ticket, Guid>>();
+#if DEBUG            
+            services.AddTransient<ICrudService<Ticket,Guid>, TicketServiceMock>();
             services.AddTransient<ICrudService<TicketStatus, Guid>, TicketStatusService<TicketStatus, Guid>>();
             services.AddTransient<ICrudService<TicketPriority, Guid>, TicketPriorityService<TicketPriority, Guid>>();
             services.AddTransient<ICrudService<Customer, Guid>, CustomerService<Customer, Guid>>();
+#endif
 
+#if !DEBUG
+            services.AddTransient<ICrudService<Ticket, Guid>, TicketService<Ticket, Guid>>();
+            services.AddTransient<ICrudService<TicketStatus, Guid>, TicketStatusService<TicketStatus, Guid>>();
+            services.AddTransient<ICrudService<TicketPriority, Guid>, TicketPriorityService<TicketPriority, Guid>>();
+            services.AddTransient<ICrudService<Customer, Guid>, CustomerService<Customer, Guid>>();
+#endif
 
             services.AddSwaggerGen(c =>
             {
