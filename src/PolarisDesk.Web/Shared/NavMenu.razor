@@ -5,16 +5,18 @@
         <MudNavMenu Class="navmenu">
             <MudNavLink Href="/" Icon="@Icons.Material.Dashboard">Dashboard</MudNavLink>
             <MudNavLink Href="/fetchdata" Icon="@Icons.Material.WbSunny">Weather</MudNavLink>
-            <MudNavLink Href="/servers" Icon="@Icons.Material.Storage">Servers</MudNavLink>
-            <MudNavLink Href="/billing" Icon="@Icons.Material.Receipt">Billing</MudNavLink>
+            @*<MudNavLink Href="/servers" Icon="@Icons.Material.Storage">Servers</MudNavLink>
+                <MudNavLink Href="/billing" Icon="@Icons.Material.Receipt">Billing</MudNavLink>*@
             <MudNavGroup Title="Settings" Icon="@Icons.Material.Settings" Expanded="true">
                 <MudNavLink Href="/users" Icon="@Icons.Material.People">Users</MudNavLink>
-                <MudNavLink Href="/security" Icon="@Icons.Material.Security">Security</MudNavLink>
+                <MudNavLink Href="/customers" Icon="@Icons.Material.SupervisorAccount">Customers</MudNavLink>
+                <MudNavLink Href="/ticketconf" Icon="@Icons.Material.Subject">Tickets Configuration</MudNavLink>
+                @*<MudNavLink Href="/security" Icon="@Icons.Material.Security">Security</MudNavLink>*@
             </MudNavGroup>
             <MudNavLink Href="/about">About</MudNavLink>
         </MudNavMenu>
     </Authorized>
     <NotAuthorized>
-        
+
     </NotAuthorized>
 </AuthorizeView>
