@@ -25,7 +25,7 @@ namespace PolarisDesk.API.Controllers
           return new List<TicketStatus>()
             {
                 new TicketStatus() { Name= "Open",Created = DateTime.Now },
-                new TicketStatus() { Name= "Closed",Created = DateTime.Now },
+                new TicketStatus() { Name= "Close",Created = DateTime.Now },
                 new TicketStatus() { Name= "Pending",Created = DateTime.Now },
             };
         }
