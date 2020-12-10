@@ -8,15 +8,12 @@
     <MudGrid>
         <MudItem xs="12" sm="6" md="4">
             <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
-                <h4>Ticket Priority</h4><br/>
-                @if (currentPriority == null)
+                <h4>Ticket Priority</h4><br />
+                @if (currentPriority == null && ticketPriority != null)
                 {
-                    if (ticketPriority != null)
+                    @foreach (var priority in ticketPriority)
                     {
-                        @foreach (var priority in ticketPriority)
-                        {
-                            <p>@priority.Name</p>
-                        }
+                        <p>@priority.Name</p>
                     }
                 }
             </MudPaper>
@@ -24,14 +21,11 @@
         <MudItem xs="12" sm="6" md="4">
             <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
                 <h4>Ticket Status</h4><br />
-                @if (currentStatus == null)
+                @if (currentStatus == null && ticketStatuses != null)
                 {
-                    if (ticketStatuses != null)
+                    @foreach (var status in ticketStatuses)
                     {
-                        @foreach (var status in ticketStatuses)
-                        {
-                            <p>@status.Name</p>
-                        }
+                        <p>@status.Name</p>
                     }
                 }
             </MudPaper>
