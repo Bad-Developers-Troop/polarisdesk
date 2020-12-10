@@ -38,9 +38,9 @@ namespace PolarisDesk.API
             //Dep
 #if DEBUG            
             services.AddTransient<ICrudService<Ticket,Guid>, TicketServiceMock>();
+            services.AddTransient<ICrudService<Customer, Guid>, CustomerServiceMock>();
             services.AddTransient<ICrudService<TicketStatus, Guid>, TicketStatusService<TicketStatus, Guid>>();
             services.AddTransient<ICrudService<TicketPriority, Guid>, TicketPriorityService<TicketPriority, Guid>>();
-            services.AddTransient<ICrudService<Customer, Guid>, CustomerService<Customer, Guid>>();
 #endif
 
 #if !DEBUG
