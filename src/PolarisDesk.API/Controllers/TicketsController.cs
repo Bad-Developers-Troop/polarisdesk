@@ -3,6 +3,7 @@ using PolarisDesk.API.Interface;
 using PolarisDesk.Models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PolarisDesk.API.Controllers
 {
@@ -18,19 +19,10 @@ namespace PolarisDesk.API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Ticket> Get()
+        public async Task<IEnumerable<Ticket>> Get()
         {
-            //_ticketService.GetList();
-
-            return new List<Ticket>
-            {
-                new Ticket() { Code = "Test001", Created = DateTime.Now },
-                new Ticket() { Code = "Test002", Created = DateTime.Now },
-                new Ticket() { Code = "Test003", Created = DateTime.Now },
-                new Ticket() { Code = "Test004", Created = DateTime.Now }
-            };
+            return await _ticketService.GetList();
         }
-
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]

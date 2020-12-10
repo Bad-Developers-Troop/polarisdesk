@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace PolarisDesk.Models
@@ -12,8 +11,5 @@ namespace PolarisDesk.Models
         public int Value { get; set; }
 
         public string Name { get; set; }
-
-        [ForeignKey("TicketPriorityId")]
-        public ICollection<Ticket> Tickets { get; set; }
-	}
+    }
 }

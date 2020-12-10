@@ -1,10 +1,17 @@
 ﻿@page "/"
 @attribute [Authorize]
+@inject HttpClient Http
 
 <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
     <MudGrid>
         <MudItem xs="12" sm="6" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
+                @if (tickets != null)
+                {
+                    <div>Tickets: @tickets.Length</div>
+                    <div>Last Ticket: @tickets.OrderByDescending(t => t.Created).FirstOrDefault().Code</div>
+                }
+            </MudPaper>
         </MudItem>
         <MudItem xs="12" sm="6" md="4">
             <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
@@ -36,3 +43,12 @@
         </MudItem>
     </MudGrid>
 </MudContainer>
+
+@code {
+    private Ticket[] tickets;
+
+    protected override async Task OnInitializedAsync()
+    {
+        tickets = await Http.GetFromJsonAsync<Ticket[]>("https://localhost:44312/api/tickets");
+    }
+}
