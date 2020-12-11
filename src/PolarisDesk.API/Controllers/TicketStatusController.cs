@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using PolarisDesk.API.Interface;
 using PolarisDesk.Models;
+using System.Threading.Tasks;
 
 namespace PolarisDesk.API.Controllers
 {
@@ -18,16 +19,16 @@ namespace PolarisDesk.API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<TicketStatus> Get()
+        public async Task<IEnumerable<TicketStatus>> Get()
         {
-            //_ticketStatusService.GetList();
+            return await _ticketStatusService.GetList();
 
-          return new List<TicketStatus>()
-            {
-                new TicketStatus() { Name= "Open",Created = DateTime.Now },
-                new TicketStatus() { Name= "Closed",Created = DateTime.Now },
-                new TicketStatus() { Name= "Pending",Created = DateTime.Now },
-            };
+          //return new List<TicketStatus>()
+          //  {
+          //      new TicketStatus() { Name= "Open",Created = DateTime.Now },
+          //      new TicketStatus() { Name= "Closed",Created = DateTime.Now },
+          //      new TicketStatus() { Name= "Pending",Created = DateTime.Now },
+          //  };
         }
 
 

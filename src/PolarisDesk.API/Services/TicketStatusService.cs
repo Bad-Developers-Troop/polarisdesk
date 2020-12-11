@@ -1,33 +1,35 @@
 ﻿using PolarisDesk.API.Interface;
+using PolarisDesk.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace PolarisDesk.API.Services
 {
-    public class TicketStatusService<T, TKey> : ICrudService<T, TKey> where T : class
-    {
-        public Task Create(T item)
-        {
-            throw new System.NotImplementedException();
-        }
+	public class TicketStatusService : ICrudService<TicketStatus, Guid>
+	{
+		public Task Create(TicketStatus item)
+		{
+			throw new NotImplementedException();
+		}
 
-        public Task Delete(TKey id)
-        {
-            throw new System.NotImplementedException();
-        }
+		public Task Delete(Guid id)
+		{
+			throw new NotImplementedException();
+		}
 
-        public Task<T> Get(TKey id)
-        {
-            throw new System.NotImplementedException();
-        }
+		public Task<TicketStatus> Get(Guid id)
+		{
+			throw new NotImplementedException();
+		}
 
-        public Task<T[]> GetList()
-        {
-            throw new System.NotImplementedException();
-        }
+		public Task<TicketStatus[]> GetList()
+		{
+			throw new NotImplementedException();
+		}
 
-        public Task Update(T item)
-        {
-            throw new System.NotImplementedException();
-        }
-    }
+		public Task Update(TicketStatus item)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }
