@@ -29,8 +29,8 @@ namespace PolarisDesk.API.Services
             var testCustomers = new Faker<Customer>()
 
                 .RuleFor(o => o.ID, f => f.Random.Guid())
-                .RuleFor(o => o.Description, f => f.Company.CompanyName(1))
-                .RuleFor(o => o.Description2, f => f.Company.CompanySuffix())
+                .RuleFor(o => o.Name, f => f.Company.CompanyName(1))
+                .RuleFor(o => o.Description, f => f.Company.CompanySuffix())
                 .RuleFor(o => o.Created, f => f.Date.Recent(5))
                 .RuleFor(o => o.Updated, f => f.Date.Recent(2))
                 .RuleFor(o => o.Address, f => f.Address.FullAddress())
