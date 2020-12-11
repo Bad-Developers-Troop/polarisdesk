@@ -1,13 +1,52 @@
 @page "/customers"
+@attribute [Authorize]
+@inject HttpClient Http
 
-<h2>Customers</h2>
+<MudPaper Elevation="2" Class="mt-16 px-8" Style="height: 100%" MaxWidth="MaxWidth.False">
+    <MudSimpleTable Hover="true">
+        <thead>
+            <tr>
+                @*<th>Id</th>*@
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (currentCustomer == null && customers != null)
+            {
+                @foreach (var customer in customers)
+                {
+                    <tr>
+                        @*<td>@customer.ID</td>*@
+                        <td>@customer.Description</td>
+                        <td>@customer.Address</td>
+                        <td>@customer.City</td>
+                    </tr>
+                }
+            }
+            s
+        </tbody>
+    </MudSimpleTable>
+</MudPaper>
 
-<MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
-    <MudGrid>
-        <MudItem xs="12" sm="6" md="12">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
-            </MudPaper>
-        </MudItem>
-    </MudGrid>
-</MudContainer>
-<br/>
+@code
+{
+    private Customer[] customers;
+    private Customer currentCustomer;
+
+    protected override async Task OnInitializedAsync()
+    {
+        currentCustomer = null;
+        await GetCustomers();
+    }
+
+    private async Task GetCustomers()
+    {
+        customers = await Http.GetFromJsonAsync<Customer[]>("https://localhost:44312/api/customers");
+    }
+
+
+}
+
+
