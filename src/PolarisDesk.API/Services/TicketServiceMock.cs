@@ -4,13 +4,9 @@ using PolarisDesk.API.Interface;
 using PolarisDesk.Models;
 using System;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Bogus.DataSets;
-using Bogus.Extensions;
 
 namespace PolarisDesk.API.Services
 {
-
     public class TicketServiceMock: ICrudService<Ticket, Guid>
     {
         public Task Create(Ticket item)

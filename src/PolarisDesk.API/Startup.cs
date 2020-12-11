@@ -37,17 +37,17 @@ namespace PolarisDesk.API
 
             //Dep
 #if DEBUG            
-            services.AddTransient<ICrudService<Ticket,Guid>, TicketServiceMock>();
-            services.AddTransient<ICrudService<TicketStatus, Guid>, TicketStatusService<TicketStatus, Guid>>();
-            services.AddTransient<ICrudService<TicketPriority, Guid>, TicketPriorityService<TicketPriority, Guid>>();
-            services.AddTransient<ICrudService<Customer, Guid>, CustomerService<Customer, Guid>>();
+            services.AddScoped<ICrudService<Ticket,Guid>, TicketServiceMock>();
+            services.AddScoped<ICrudService<Customer, Guid>, CustomerServiceMock>();
+            services.AddScoped<ICrudService<TicketStatus, Guid>, TicketStatusService<TicketStatus, Guid>>();
+            services.AddScoped<ICrudService<TicketPriority, Guid>, TicketPriorityService<TicketPriority, Guid>>();
 #endif
 
 #if !DEBUG
-            services.AddTransient<ICrudService<Ticket, Guid>, TicketService<Ticket, Guid>>();
-            services.AddTransient<ICrudService<TicketStatus, Guid>, TicketStatusService<TicketStatus, Guid>>();
-            services.AddTransient<ICrudService<TicketPriority, Guid>, TicketPriorityService<TicketPriority, Guid>>();
-            services.AddTransient<ICrudService<Customer, Guid>, CustomerService<Customer, Guid>>();
+            services.AddScoped<ICrudService<Ticket, Guid>, TicketService<Ticket, Guid>>();
+            services.AddScoped<ICrudService<TicketStatus, Guid>, TicketStatusService<TicketStatus, Guid>>();
+            services.AddScoped<ICrudService<TicketPriority, Guid>, TicketPriorityService<TicketPriority, Guid>>();
+            services.AddScoped<ICrudService<Customer, Guid>, CustomerService<Customer, Guid>>();
 #endif
 
             services.AddSwaggerGen(c =>
