@@ -3,46 +3,69 @@ using Bogus;
 using PolarisDesk.API.Interface;
 using PolarisDesk.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PolarisDesk.API.Services
 {
-    public class TicketServiceMock: ICrudService<Ticket, Guid>
-    {
-        public Task Create(Ticket item)
-        {
-            throw new System.NotImplementedException();
-        }
+	public class TicketServiceMock : ICrudService<Ticket, Guid>
+	{
+		static List<Ticket> tickets;
+		public TicketServiceMock()
+		{
+			var testTickets = new Faker<Ticket>()
 
-        public Task Delete(Guid id)
-        {
-            throw new System.NotImplementedException();
-        }
+			.RuleFor(o => o.ID, f => f.Random.Guid())
+			.RuleFor(o => o.Code, f => f.Random.Int(0, 1000).ToString())
+			.RuleFor(o => o.Title, f => f.Lorem.Sentences(1))
+			.RuleFor(o => o.Description, f => f.Lorem.Sentences(3))
+			.RuleFor(o => o.Created, f => f.Date.Recent(5))
+			.RuleFor(o => o.Updated, f => f.Date.Recent(2));
 
-        public Task<Ticket> Get(Guid id)
-        {
-            throw new System.NotImplementedException();
-        }
+			tickets = testTickets.Generate(500);
+		}
+		public Task Create(Ticket item)
+		{
+			tickets.Add(item);
+			return Task.CompletedTask;
+		}
 
-        public Task<Ticket[]> GetList()
-        {
-            var testTickets = new Faker<Ticket>()
+		public async Task Delete(Guid id)
+		{
+			var ticket = await Get(id);
+			if (ticket is not null)
+			{
+				ticket.Enabled = false;
+				ticket.Deleted = DateTime.Now;
+			}
+		}
 
-            .RuleFor(o => o.ID, f => f.Random.Guid())
-            .RuleFor(o => o.Code, f => f.Random.Int(0, 1000).ToString())
-            .RuleFor(o => o.Title, f => f.Lorem.Sentences(1))
-            .RuleFor(o => o.Description, f => f.Lorem.Sentences(3))
-            .RuleFor(o => o.Created, f => f.Date.Recent(5))
-            .RuleFor(o => o.Updated, f => f.Date.Recent(2));
+		public Task<Ticket> Get(Guid id)
+		{
+			return Task.FromResult(tickets.Where(x => x.ID == id).SingleOrDefault());
+		}
 
-            var tickets = testTickets.Generate(500);
+		public Task<Ticket[]> GetList()
+		{
+			return Task.FromResult(tickets.Where(x => x.Enabled).ToArray());
+		}
 
-            return Task.FromResult(tickets.ToArray());
-        }
-
-        public Task Update(Ticket item)
-        {
-            throw new System.NotImplementedException();
-        }
-    }
+		public async Task Update(Ticket item)
+		{
+			var ticket = await Get(item.ID);
+			if (ticket is not null)
+			{
+				ticket.Title = item.Title;
+				ticket.Code = item.Code;
+				ticket.Description = item.Description;
+				ticket.Enabled = item.Enabled;
+				ticket.Updated = DateTime.Now;
+				if (ticket.Enabled)
+					ticket.Deleted = DateTime.MinValue;
+				else
+					ticket.Deleted = DateTime.Now;
+			}
+		}
+	}
 }

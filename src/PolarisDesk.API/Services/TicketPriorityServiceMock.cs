@@ -35,8 +35,11 @@ namespace PolarisDesk.API.Services
 		public async Task Delete(Guid id)
 		{
 			var priority = await Get(id);
-			if(priority is not null)
-				ticketPriority.Remove(priority);
+			if (priority is not null)
+			{
+				priority.Enabled = false;
+				priority.Deleted = DateTime.Now;
+			}
 		}
 
 		public Task<TicketPriority> Get(Guid id)
@@ -46,15 +49,23 @@ namespace PolarisDesk.API.Services
 
 		public Task<TicketPriority[]> GetList()
 		{
-			return Task.FromResult(ticketPriority.ToArray());
+			return Task.FromResult(ticketPriority.Where(x => x.Enabled).ToArray());
 		}
 
-		public  async Task Update(TicketPriority item)
+		public async Task Update(TicketPriority item)
 		{
 			var priority = await Get(item.ID);
-			priority.Name = item.Name;
-			priority.Value = item.Value;
-			item.Updated = DateTime.Now;
+			{
+				priority.Name = item.Name;
+				priority.Value = item.Value;
+				priority.Enabled = item.Enabled;
+				priority.Updated = DateTime.Now;
+				if (priority.Enabled)
+					priority.Deleted = DateTime.MinValue;
+				else
+					priority.Deleted = DateTime.Now;
+			}
+
 		}
 	}
 }
