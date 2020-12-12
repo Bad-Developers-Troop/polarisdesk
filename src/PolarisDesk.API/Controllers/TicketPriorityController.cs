@@ -22,13 +22,6 @@ namespace PolarisDesk.API.Controllers
         public async Task<IEnumerable<TicketPriority>> Get()
         {
             return await _ticketPriorityService.GetList();
-
-            //return new List<TicketPriority>()
-            //{
-            //    new TicketPriority() { Name= "High",Created = DateTime.Now },
-            //    new TicketPriority() { Name= "Medium",Created = DateTime.Now },
-            //    new TicketPriority() { Name= "Low",Created = DateTime.Now },
-            //};
         }
 
 
