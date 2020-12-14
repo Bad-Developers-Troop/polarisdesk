@@ -2,53 +2,68 @@
 @attribute [Authorize]
 @inject HttpClient Http
 
-<MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
-    <MudGrid>
-        <MudItem xs="12" sm="6" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
-                @if (tickets != null)
-                {
-                    <div>Tickets: @tickets.Length</div>
-                    <div>Last Ticket: @tickets.OrderByDescending(t => t.Created).FirstOrDefault().Code</div>
-                }
-            </MudPaper>
-        </MudItem>
-        <MudItem xs="12" sm="6" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-        </MudItem>
-        <MudItem xs="12" sm="12" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-        </MudItem>
-        <MudItem xs="12" sm="6">
-            <MudGrid>
-                <MudItem xs="12">
-                    <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-                </MudItem>
-                <MudItem xs="12">
-                    <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-                </MudItem>
-            </MudGrid>
-        </MudItem>
-        <MudItem xs="12" sm="6">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 100%"></MudPaper>
-        </MudItem>
-        <MudItem xs="12" sm="6" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-        </MudItem>
-        <MudItem xs="12" sm="6" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-        </MudItem>
-        <MudItem xs="12" sm="12" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-        </MudItem>
-    </MudGrid>
-</MudContainer>
+@if (tickets == null)
+{
+    <MudProgressCircular Color="Color.Success" Indeterminate="true" /> <p>Loading</p>
+}
+else
+{
+    <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
+        <MudGrid>
+            <MudItem xs="12" sm="6" md="12">
+                <MudPaper Elevation="2" Class="pa-4">
+                    <MudTable Items="@tickets" Filter="new Func<Ticket,bool>(FilterFunc)">
+                        <ToolBarContent>
+                            <MudText Typo="Typo.h6">Tickets</MudText>
+                            <MudToolBarSpacer />
+                            <MudTextField @bind-Value="search_string" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                        </ToolBarContent>
+                        <HeaderContent>
+                            <MudTh>Code</MudTh>
+                            <MudTh>Title</MudTh>
+                            <MudTh>Description</MudTh>
+                        </HeaderContent>
+                        <RowTemplate>
+                            <MudTd DataLabel="Code">@context.Code</MudTd>
+                            <MudTd DataLabel="Title">@context.Title</MudTd>
+                            <MudTd DataLabel="Description">@context.Description</MudTd>
+                        </RowTemplate>
+                        <PagerContent>
+                            <MudTablePager />
+                        </PagerContent>
+                    </MudTable>
+                </MudPaper>
+            </MudItem>
+
+        </MudGrid>
+    </MudContainer>
+}
+
+
 
 @code {
     private Ticket[] tickets;
+    bool dense = false;
+    bool hover = true;
+    bool fixed_header = false;
+    string search_string = "";
 
     protected override async Task OnInitializedAsync()
     {
         tickets = await Http.GetFromJsonAsync<Ticket[]>("https://localhost:44312/api/tickets");
     }
+
+    bool FilterFunc(Ticket element)
+    {
+        if (string.IsNullOrWhiteSpace(search_string))
+            return true;
+        if (element.Code.Contains(search_string))
+            return true;
+        if (element.Title.Contains(search_string))
+            return true;
+        if (element.Description.Contains(search_string))
+            return true;
+        return false;
+    }
+
 }
