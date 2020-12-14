@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace PolarisDesk.Models
 {
@@ -6,6 +7,7 @@ namespace PolarisDesk.Models
     {
         public Guid ID { get; set; }
 
+        [Required(ErrorMessage = "Il campo nome è obbligatorio")]
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -14,6 +16,7 @@ namespace PolarisDesk.Models
 
         public string Address { get; set; }
 
+        [Required(ErrorMessage = "Il campo città è obbligatorio")]
         public string City { get; set; }
 
         public string Zip { get; set; }
