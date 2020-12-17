@@ -1,0 +1,36 @@
+﻿@using System.ComponentModel.DataAnnotations
+
+<EditForm Model="@Detail" OnValidSubmit="@(e => OnSave.InvokeAsync(Detail))">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <MudCard>
+        <MudCardContent>
+            <MudTextField Label="Name" HelperText="Company Name" @bind-Value="Detail.Name" For="@(() => Detail.Name)" />
+            <MudTextField Label="Description" HelperText="Company Description" Class="mt-3" @bind-Value="Detail.Description" For="@(() => Detail.Description)" />
+            <MudTextField Label="Description2" HelperText="Company Description2" Class="mt-3" @bind-Value="Detail.Description2" For="@(() => Detail.Description2)" />
+            <MudTextField Label="Address" HelperText="Address" Class="mt-3" @bind-Value="Detail.Address" For="@(() => Detail.Address)" />
+            <MudTextField Label="City" HelperText="City" Class="mt-3" @bind-Value="Detail.City" For="@(() => Detail.City)" />
+            <MudTextField Label="Zip" HelperText="Zip" Class="mt-3" @bind-Value="Detail.Zip" For="@(() => Detail.Zip)" />
+            <MudTextField Label="Note" HelperText="Note" Class="mt-3" @bind-Value="Detail.Note" For="@(() => Detail.Note)" />
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Save</MudButton>
+        </MudCardActions>
+    </MudCard>
+</EditForm>
+
+@code {
+
+    //https://mudblazor.com/components/form
+
+
+    [Parameter]
+    public Customer Detail { get; set; }
+
+    [Parameter]
+    public EventCallback<Customer> OnSave { get; set; }
+
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+
+}
