@@ -1,0 +1,33 @@
+﻿@using System.ComponentModel.DataAnnotations
+
+<EditForm Model="@Detail" OnValidSubmit="@(e => OnSave.InvokeAsync(Detail))">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <MudCard>
+        <MudCardContent>
+            <MudTextField Label="Code" HelperText="Code" @bind-Value="Detail.Code" For="@(() => Detail.Code)" />
+            <MudTextField Label="Title" HelperText="Title" Class="mt-3" @bind-Value="Detail.Title" For="@(() => Detail.Title)" />
+            <MudTextField Label="Description" HelperText="Description" Class="mt-3" @bind-Value="Detail.Description" For="@(() => Detail.Description)" />
+            @*<MudTextField Label="Address" HelperText="Address" Class="mt-3" @bind-Value="Detail.Address" For="@(() => Detail.Address)" />
+        <MudTextField Label="City" HelperText="City" Class="mt-3" @bind-Value="Detail.City" For="@(() => Detail.City)" />
+        <MudTextField Label="Zip" HelperText="Zip" Class="mt-3" @bind-Value="Detail.Zip" For="@(() => Detail.Zip)" />
+        <MudTextField Label="Note" HelperText="Note" Class="mt-3" @bind-Value="Detail.Note" For="@(() => Detail.Note)" />*@
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Save</MudButton>
+        </MudCardActions>
+    </MudCard>
+</EditForm>
+
+@code {
+
+    [Parameter]
+    public Ticket Detail { get; set; }
+
+    [Parameter]
+    public EventCallback<Ticket> OnSave { get; set; }
+
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+
+}

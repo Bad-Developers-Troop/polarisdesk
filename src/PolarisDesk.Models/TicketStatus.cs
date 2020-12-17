@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PolarisDesk.Models
 {
@@ -9,5 +9,8 @@ namespace PolarisDesk.Models
         public Guid ID { get; set; }
 
         public string Name { get; set; }
+
+        [ForeignKey("TicketStatusId")]
+        public ICollection<Ticket> Tickets { get; set; }
     }
 }
