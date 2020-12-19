@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace PolarisDesk.API.Interface
+namespace PolarisDesk.Shared.Interface
 {
     public interface ICrudService<T,Tkey> where T:class
     {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PolarisDesk.API.Interface;
+
 using PolarisDesk.Models;
+using PolarisDesk.Shared.Interface;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

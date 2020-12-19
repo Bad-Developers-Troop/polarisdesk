@@ -1,5 +1,5 @@
 ﻿
-using PolarisDesk.API.Interface;
+using PolarisDesk.Shared.Interface;
 using System.Threading.Tasks;
 
 namespace PolarisDesk.API.Services

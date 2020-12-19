@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="32.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PolarisDesk.Models\PolarisDesk.Models.csproj" />
+    <ProjectReference Include="..\PolarisDesk.Shared\PolarisDesk.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

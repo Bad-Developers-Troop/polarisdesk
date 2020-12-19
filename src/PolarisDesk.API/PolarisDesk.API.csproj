@@ -14,6 +14,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PolarisDesk.Models\PolarisDesk.Models.csproj" />
+    <ProjectReference Include="..\PolarisDesk.Shared\PolarisDesk.Shared.csproj" />
+    <ProjectReference Include="..\PolarisDesk.Test\PolarisDesk.Test.csproj" />
   </ItemGroup>
 
 </Project>

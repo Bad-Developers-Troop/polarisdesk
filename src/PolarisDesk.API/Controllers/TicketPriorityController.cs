@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using PolarisDesk.API.Interface;
+
 using PolarisDesk.Models;
 using System.Threading.Tasks;
+using PolarisDesk.Shared.Interface;
 
 namespace PolarisDesk.API.Controllers
 {

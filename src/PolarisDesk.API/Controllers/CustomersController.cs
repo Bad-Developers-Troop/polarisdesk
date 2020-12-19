@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using PolarisDesk.API.Interface;
+
 using PolarisDesk.Models;
+using PolarisDesk.Shared.Interface;
 
 namespace PolarisDesk.API.Controllers
 {

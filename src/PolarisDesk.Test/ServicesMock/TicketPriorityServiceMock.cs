@@ -1,12 +1,13 @@
 ﻿using Bogus;
-using PolarisDesk.API.Interface;
+
 using PolarisDesk.Models;
+using PolarisDesk.Shared.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PolarisDesk.API.Services
+namespace PolarisDesk.Test.Services
 {
 	public class TicketPriorityServiceMock : ICrudService<TicketPriority, Guid>
 	{
@@ -35,7 +36,7 @@ namespace PolarisDesk.API.Services
 		public async Task Delete(Guid id)
 		{
 			var priority = await Get(id);
-			if (priority is not null)
+			if (priority != null)
 			{
 				priority.Enabled = false;
 				priority.Deleted = DateTime.Now;
