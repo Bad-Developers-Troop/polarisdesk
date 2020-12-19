@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PolarisDesk.Test.InitializeDB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,18 @@ namespace PolarisDesk.API
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+#if (DEBUG)
+            using (var scope = host.Services.CreateScope())
+            {
+                //3. Get the instance of BoardGamesDBContext in our services layer
+                var services = scope.ServiceProvider;
+
+                InitializeDB.Initialize(services);
+            }
+#endif
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

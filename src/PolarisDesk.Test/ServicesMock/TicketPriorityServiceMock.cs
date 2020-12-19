@@ -1,5 +1,5 @@
 ﻿using Bogus;
-
+using PolarisDesk.DAL;
 using PolarisDesk.Models;
 using PolarisDesk.Shared.Interface;
 using System;
@@ -11,26 +11,17 @@ namespace PolarisDesk.Test.Services
 {
 	public class TicketPriorityServiceMock : ICrudService<TicketPriority, Guid>
 	{
-		static List<TicketPriority> ticketPriority = null;
-		static TicketPriorityServiceMock()
+		private readonly PolarisDeskContext context;
+
+		public TicketPriorityServiceMock(PolarisDeskContext context)
 		{
-			var testPriority = new Faker<TicketPriority>()
-
-			.RuleFor(o => o.ID, f => f.Random.Guid())
-			.RuleFor(o => o.Value, f => f.Random.Int(0, 1000))
-			.RuleFor(o => o.Name, f => f.Lorem.Sentences(1))
-			.RuleFor(o => o.Created, f => f.Date.Recent(5))
-			.RuleFor(o => o.Updated, f => f.Date.Recent(2));
-
-			var priority = testPriority.Generate(500);
-			ticketPriority = priority;
-
+			this.context = context;
 		}
 
 		public Task Create(TicketPriority item)
 		{
-			ticketPriority.Add(item);
-			return Task.CompletedTask;
+			context.TicketPriorities.AddAsync(item);
+			return context.SaveChangesAsync();
 		}
 
 		public async Task Delete(Guid id)
@@ -41,16 +32,17 @@ namespace PolarisDesk.Test.Services
 				priority.Enabled = false;
 				priority.Deleted = DateTime.Now;
 			}
+			await context.SaveChangesAsync();
 		}
 
 		public Task<TicketPriority> Get(Guid id)
 		{
-			return Task.FromResult(ticketPriority.Where(x => x.ID == id).SingleOrDefault());
+			return Task.FromResult(context.TicketPriorities.Where(x => x.ID == id).SingleOrDefault());
 		}
 
 		public Task<TicketPriority[]> GetList()
 		{
-			return Task.FromResult(ticketPriority.Where(x => x.Enabled).ToArray());
+			return Task.FromResult(context.TicketPriorities.Where(x => x.Enabled).ToArray());
 		}
 
 		public async Task Update(TicketPriority item)
@@ -66,7 +58,7 @@ namespace PolarisDesk.Test.Services
 				else
 					priority.Deleted = DateTime.Now;
 			}
-
+			await context.SaveChangesAsync();
 		}
 	}
 }

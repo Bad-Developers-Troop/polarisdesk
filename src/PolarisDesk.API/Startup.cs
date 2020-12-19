@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
 using PolarisDesk.API.Services;
+using PolarisDesk.DAL;
 using PolarisDesk.Models;
 using PolarisDesk.Shared.Interface;
 using PolarisDesk.Test.Services;
@@ -36,13 +38,20 @@ namespace PolarisDesk.API
                     options.Audience = "polarisdeskapi";
                 });
 
-
             //Dep
-#if DEBUG            
-            services.AddTransient<ICrudService<Ticket,Guid>, TicketServiceMock>();
+#if DEBUG
+            services.AddDbContext<PolarisDeskContext>
+                (
+                    options =>
+                    {
+                        options.UseInMemoryDatabase(databaseName: "Polaris");
+                    }
+                );
+            services.AddScoped<ICrudService<Ticket,Guid>, TicketServiceMock>();
             services.AddScoped<ICrudService<Customer, Guid>, CustomerServiceMock>();
-            services.AddTransient<ICrudService<TicketStatus, Guid>, TicketStatusServiceMock>();
-            services.AddTransient<ICrudService<TicketPriority, Guid>, TicketPriorityServiceMock>();
+            services.AddScoped<ICrudService<TicketStatus, Guid>, TicketStatusServiceMock>();
+            services.AddScoped<ICrudService<TicketPriority, Guid>, TicketPriorityServiceMock>();
+
 #endif
 
 #if !DEBUG

@@ -8,11 +8,13 @@
     <PackageReference Include="Bogus" Version="32.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" NoWarn="NU1605" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.1" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PolarisDesk.DAL\PolarisDesk.DAL.csproj" />
     <ProjectReference Include="..\PolarisDesk.Models\PolarisDesk.Models.csproj" />
     <ProjectReference Include="..\PolarisDesk.Shared\PolarisDesk.Shared.csproj" />
     <ProjectReference Include="..\PolarisDesk.Test\PolarisDesk.Test.csproj" />

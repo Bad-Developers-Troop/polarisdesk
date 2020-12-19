@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolarisDesk.Models", "Polar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolarisDesk.Test", "PolarisDesk.Test\PolarisDesk.Test.csproj", "{CEC6F0CD-477F-44D8-BC06-2C360A696C4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolarisDesk.DAL", "PolarisDesk.DAL\PolarisDesk.DAL.csproj", "{E3154BDB-21FF-43C7-BBD1-559292C737FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,18 @@ Global
 		{CEC6F0CD-477F-44D8-BC06-2C360A696C4E}.Release|x64.Build.0 = Release|Any CPU
 		{CEC6F0CD-477F-44D8-BC06-2C360A696C4E}.Release|x86.ActiveCfg = Release|Any CPU
 		{CEC6F0CD-477F-44D8-BC06-2C360A696C4E}.Release|x86.Build.0 = Release|Any CPU
+		{E3154BDB-21FF-43C7-BBD1-559292C737FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3154BDB-21FF-43C7-BBD1-559292C737FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3154BDB-21FF-43C7-BBD1-559292C737FF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E3154BDB-21FF-43C7-BBD1-559292C737FF}.Debug|x64.Build.0 = Debug|Any CPU
+		{E3154BDB-21FF-43C7-BBD1-559292C737FF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E3154BDB-21FF-43C7-BBD1-559292C737FF}.Debug|x86.Build.0 = Debug|Any CPU
+		{E3154BDB-21FF-43C7-BBD1-559292C737FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3154BDB-21FF-43C7-BBD1-559292C737FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3154BDB-21FF-43C7-BBD1-559292C737FF}.Release|x64.ActiveCfg = Release|Any CPU
+		{E3154BDB-21FF-43C7-BBD1-559292C737FF}.Release|x64.Build.0 = Release|Any CPU
+		{E3154BDB-21FF-43C7-BBD1-559292C737FF}.Release|x86.ActiveCfg = Release|Any CPU
+		{E3154BDB-21FF-43C7-BBD1-559292C737FF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

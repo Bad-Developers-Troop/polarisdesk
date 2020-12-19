@@ -1,4 +1,5 @@
 ﻿using Bogus;
+using PolarisDesk.DAL;
 using PolarisDesk.Models;
 using PolarisDesk.Shared.Interface;
 using System;
@@ -10,21 +11,15 @@ namespace PolarisDesk.Test.Services
 {
 	public class TicketStatusServiceMock : ICrudService<TicketStatus, Guid>
 	{
-		static List<TicketStatus> ticketStatus;
-		static TicketStatusServiceMock()
+		private readonly PolarisDeskContext context;
+
+		public TicketStatusServiceMock(PolarisDeskContext context)
 		{
-			var testStatus = new Faker<TicketStatus>()
-
-		.RuleFor(o => o.ID, f => f.Random.Guid())
-		.RuleFor(o => o.Name, f => f.Lorem.Sentences(1))
-		.RuleFor(o => o.Created, f => f.Date.Recent(5))
-		.RuleFor(o => o.Updated, f => f.Date.Recent(2));
-
-			ticketStatus = testStatus.Generate(500);
+			this.context = context;
 		}
 		public Task Create(TicketStatus item)
 		{
-			ticketStatus.Add(item);
+			context.TicketStatus.Add(item);
 			return Task.CompletedTask;
 		}
 
@@ -36,16 +31,17 @@ namespace PolarisDesk.Test.Services
 				ticket.Enabled = false;
 				ticket.Deleted = DateTime.Now;
 			}
+			await context.SaveChangesAsync();
 		}
 
 		public Task<TicketStatus> Get(Guid id)
 		{
-			return Task.FromResult(ticketStatus.Where(x => x.ID == id).SingleOrDefault());
+			return Task.FromResult(context.TicketStatus.Where(x => x.ID == id).SingleOrDefault());
 		}
 
 		public Task<TicketStatus[]> GetList()
 		{
-			return Task.FromResult(ticketStatus.Where(x => x.Enabled).ToArray());
+			return Task.FromResult(context.TicketStatus.Where(x => x.Enabled).ToArray());
 		}
 
 		public async Task Update(TicketStatus item)
@@ -61,6 +57,7 @@ namespace PolarisDesk.Test.Services
 				else
 					ticket.Deleted = DateTime.Now;
 			}
+			await context.SaveChangesAsync();
 		}
 	}
 }

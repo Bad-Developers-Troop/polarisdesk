@@ -1,5 +1,5 @@
 ﻿using Bogus;
-
+using PolarisDesk.DAL;
 using PolarisDesk.Models;
 using PolarisDesk.Shared.Interface;
 using System;
@@ -12,29 +12,16 @@ namespace PolarisDesk.Test.Services
 
 	public class CustomerServiceMock : ICrudService<Customer, Guid>
 	{
-		static List<Customer> customers;
+		private readonly PolarisDeskContext context;
 
-		static CustomerServiceMock()
+		public CustomerServiceMock(PolarisDeskContext context)
 		{
-			var testCustomers = new Faker<Customer>()
-
-				.RuleFor(o => o.ID, f => f.Random.Guid())
-				.RuleFor(o => o.Name, f => f.Company.CompanyName(1))
-				.RuleFor(o => o.Description, f => f.Company.CompanySuffix())
-				.RuleFor(o => o.Created, f => f.Date.Recent(5))
-				.RuleFor(o => o.Updated, f => f.Date.Recent(2))
-				.RuleFor(o => o.Address, f => f.Address.FullAddress())
-				.RuleFor(o => o.Zip, f => f.Address.ZipCode())
-				.RuleFor(o => o.City, f => f.Address.City())
-				.RuleFor(o => o.Note, f => f.Lorem.Sentences(1));
-
-			customers = testCustomers.Generate(200);
-
+			this.context = context;
 		}
 		public Task Create(Customer item)
 		{
-			customers.Add(item);
-			return Task.CompletedTask;
+			context.Customers.Add(item);
+			return context.SaveChangesAsync();
 		}
 
 		public async Task Delete(Guid id)
@@ -45,16 +32,17 @@ namespace PolarisDesk.Test.Services
 				customer.Enabled = false;
 				customer.Deleted = DateTime.Now;
 			}
+			await context.SaveChangesAsync();
 		}
 
 		public Task<Customer> Get(Guid id)
 		{
-			return Task.FromResult(customers.Where(x => x.ID == id).SingleOrDefault());
+			return Task.FromResult(context.Customers.Where(x => x.ID == id).FirstOrDefault());
 		}
-
 		public Task<Customer[]> GetList()
 		{
-			return Task.FromResult(customers.Where(x => x.Enabled).ToArray());
+			var result = context.Customers.Where(x => x.Enabled);
+			return Task.FromResult(result.ToArray());
 		}
 
 		public async Task Update(Customer item)
@@ -77,6 +65,7 @@ namespace PolarisDesk.Test.Services
 					customer.Deleted = DateTime.Now;
 
 			}
+			await context.SaveChangesAsync();
 		}
 	}
 }
