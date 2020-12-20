@@ -12,6 +12,9 @@ namespace PolarisDesk.Models
 
         public string Name { get; set; }
 
+        public int InternalId { get; set; }
+
+
         [ForeignKey("TicketPriorityId")]
         public ICollection<Ticket> Tickets { get; set; }
     }

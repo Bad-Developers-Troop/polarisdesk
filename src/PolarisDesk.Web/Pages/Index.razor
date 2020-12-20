@@ -44,7 +44,7 @@
 
 @if (currentTicket != null)
 {
-    <TicketDetail Detail="currentTicket" OnSave="OnSave" OnCancel="OnCancel" />
+    <TicketDetail Detail="currentTicket" OnSave="OnSave" OnCancel="OnCancel" TicketPriorities ="ticketPriorities" TicketStatuses ="ticketStatuses" />
 }
 
 
@@ -56,7 +56,12 @@
     bool hover = true;
     bool fixed_header = false;
     string search_string = "";
+
     Ticket currentTicket;
+
+    private TicketPriority[] ticketPriorities;
+    private TicketStatus[] ticketStatuses;
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -76,9 +81,19 @@
         return false;
     }
 
-    public void OnNew()
+    public async Task OnNew()
     {
-        this.currentTicket = new Ticket();
+        ticketStatuses = await Http.GetFromJsonAsync<TicketStatus[]>("https://localhost:44312/api/TicketStatus");
+        ticketPriorities = await Http.GetFromJsonAsync<TicketPriority[]>("https://localhost:44312/api/TicketPriority");
+
+
+        this.currentTicket = new Ticket
+        {
+            TicketPriorityId = 1,
+            TicketStatusId = 1
+        };
+        
+
     }
 
     public void OnSave(Ticket customer)
@@ -92,5 +107,5 @@
     {
         this.currentTicket = null;
     }
-    
+
 }
