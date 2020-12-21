@@ -1,6 +1,4 @@
-﻿@using System.ComponentModel.DataAnnotations
-@using System.Diagnostics.Tracing
-@inject HttpClient Http
+﻿@inject HttpClient Http
 
 <EditForm Model="@Detail" OnValidSubmit="@(e => OnSave.InvokeAsync(Detail))">
     <DataAnnotationsValidator />
@@ -13,7 +11,7 @@
             
             @if (TicketPriorities != null)
             {
-                <MudSelect Label="Select Priority" HelperText="Priority" @bind-Value="Detail.TicketPriorityId" T="Guid">
+                <MudSelect Label="Select Priority" HelperText="Priority" @bind-Value="Detail.TicketPriority.ID" T="Guid">
                     @foreach (var item in TicketPriorities)
                         {
                         <MudSelectItem Value="@item.ID" T="Guid">@item.Name</MudSelectItem>
@@ -23,7 +21,7 @@
             
             @if (TicketStatuses != null)
             {
-                <MudSelect Label="Select Priority" HelperText="Priority" @bind-Value="Detail.TicketStatusId" T="Guid">
+                <MudSelect Label="Select Priority" HelperText="Priority" @bind-Value="Detail.TicketStatus.ID" T="Guid">
                     @foreach (var item in TicketStatuses)
                     {
                         <MudSelectItem Value="@item.ID">@item.Name</MudSelectItem>

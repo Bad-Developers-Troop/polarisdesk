@@ -85,15 +85,14 @@
     {
         ticketStatuses = await Http.GetFromJsonAsync<TicketStatus[]>("https://localhost:44312/api/TicketStatus");
         ticketPriorities = await Http.GetFromJsonAsync<TicketPriority[]>("https://localhost:44312/api/TicketPriority");
-
-       
-
+        
         this.currentTicket = new Ticket()
         {
-            TicketStatusId = ticketStatuses[0].ID,
-            TicketPriorityId = ticketPriorities[0].ID
+            TicketPriority =  new TicketPriority(){ID = ticketPriorities[0].ID },
+            TicketStatus = new TicketStatus(){ID = ticketStatuses[0].ID}
         };
     }
+
 
     public void OnSave(Ticket customer)
     {

@@ -9,8 +9,8 @@ namespace PolarisDesk.Models
         public Guid ID { get; set; }
 
         public string Name { get; set; }
-        
-        [ForeignKey("TicketStatusId")]
+
+        [ForeignKey("TicketStatus")]
         public ICollection<Ticket> Tickets { get; set; }
     }
 }
