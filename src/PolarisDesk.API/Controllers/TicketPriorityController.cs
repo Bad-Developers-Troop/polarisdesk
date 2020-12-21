@@ -24,9 +24,9 @@ namespace PolarisDesk.API.Controllers
 
             return new List<TicketPriority>()
             {
-                new TicketPriority() { InternalId = 1,Name= "High",Created = DateTime.Now, ID = Guid.NewGuid()},
-                new TicketPriority() { InternalId= 2,Name="Medium",Created = DateTime.Now, ID = Guid.NewGuid()},
-                new TicketPriority() { InternalId =3 ,Name= "Low",Created = DateTime.Now, ID = Guid.NewGuid()},
+                new TicketPriority() { Name= "High",Created = DateTime.Now, ID = Guid.NewGuid()},
+                new TicketPriority() { Name="Medium",Created = DateTime.Now, ID = Guid.NewGuid()},
+                new TicketPriority() { Name= "Low",Created = DateTime.Now, ID = Guid.NewGuid()},
             };
         }
 

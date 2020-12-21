@@ -15,11 +15,11 @@ namespace PolarisDesk.Models
 
         public string Description { get; set; }
 
-        public int TicketStatusId { get; set; }
+        public Guid TicketStatusId { get; set; }
 
         public TicketStatus TicketStatus { get; set; }
 
-        public int TicketPriorityId { get; set; }
+        public Guid TicketPriorityId { get; set; }
 
         public TicketPriority Priority { get; set; }
 
