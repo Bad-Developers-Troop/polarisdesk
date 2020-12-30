@@ -22,16 +22,7 @@ namespace PolarisDesk.API.Controllers
         [HttpGet]
         public async Task<IEnumerable<TicketStatus>> Get()
         {
-
             return await _ticketStatusService.GetList();
-
-          //return new List<TicketStatus>()
-          //  {
-          //      new TicketStatus() { Name= "Open",Created = DateTime.Now },
-          //      new TicketStatus() { Name= "Closed",Created = DateTime.Now },
-          //      new TicketStatus() { Name= "Pending",Created = DateTime.Now },
-          //  };
-
         }
 
 
