@@ -22,11 +22,11 @@ namespace PolarisDesk.API.Controllers
         {
             //_ticketStatusService.GetList();
 
-          return new List<TicketStatus>()
+            return new List<TicketStatus>()
             {
-                new TicketStatus() { Name= "Open",Created = DateTime.Now },
-                new TicketStatus() { Name= "Closed",Created = DateTime.Now },
-                new TicketStatus() { Name= "Pending",Created = DateTime.Now },
+                new TicketStatus() {Name= "Open",Created = DateTime.Now, ID = Guid.NewGuid()},
+                new TicketStatus() {Name= "Close",Created = DateTime.Now, ID = Guid.NewGuid() },
+                new TicketStatus() {Name= "Pending",Created = DateTime.Now, ID = Guid.NewGuid()},
             };
         }
 

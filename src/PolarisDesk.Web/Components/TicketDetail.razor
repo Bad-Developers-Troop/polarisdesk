@@ -1,0 +1,60 @@
+﻿@inject HttpClient Http
+
+<EditForm Model="@Detail" OnValidSubmit="@(e => OnSave.InvokeAsync(Detail))">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <MudCard>
+        <MudCardContent>
+            <MudTextField Label="Code" HelperText="Code" @bind-Value="Detail.Code" For="@(() => Detail.Code)" />
+            <MudTextField Label="Title" HelperText="Title" Class="mt-3" @bind-Value="Detail.Title" For="@(() => Detail.Title)" />
+            <MudTextField Label="Description" HelperText="Description" Class="mt-3" @bind-Value="Detail.Description" For="@(() => Detail.Description)" />
+            
+            @if (TicketPriorities != null)
+            {
+                <MudSelect Label="Select Priority" HelperText="Priority" @bind-Value="Detail.TicketPriority.ID" T="Guid">
+                    @foreach (var item in TicketPriorities)
+                        {
+                        <MudSelectItem Value="@item.ID" T="Guid">@item.Name</MudSelectItem>
+                        }
+                </MudSelect>
+            }
+            
+            @if (TicketStatuses != null)
+            {
+                <MudSelect Label="Select Priority" HelperText="Priority" @bind-Value="Detail.TicketStatus.ID" T="Guid">
+                    @foreach (var item in TicketStatuses)
+                    {
+                        <MudSelectItem Value="@item.ID">@item.Name</MudSelectItem>
+                    }
+                </MudSelect>
+            }
+
+            
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Save</MudButton>
+        </MudCardActions>
+    </MudCard>
+</EditForm>
+
+@code {
+
+
+
+    [Parameter]
+    public Ticket Detail { get; set; }
+
+    [Parameter]
+    public EventCallback<Ticket> OnSave { get; set; }
+
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+
+    [Parameter]
+    public TicketPriority[] TicketPriorities { get; set; }
+
+    [Parameter]
+    public TicketStatus[] TicketStatuses { get; set; }
+
+
+}
