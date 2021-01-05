@@ -64,9 +64,9 @@
     {
         if (string.IsNullOrWhiteSpace(search_string))
             return true;
-        if (element.Name.Contains(search_string))
+        if (element.Name.ToLowerInvariant().Contains(search_string.ToLowerInvariant()))
             return true;
-        if (element.Description.Contains(search_string))
+        if (element.Description.ToLowerInvariant().Contains(search_string.ToLowerInvariant()))
             return true;
         return false;
     }

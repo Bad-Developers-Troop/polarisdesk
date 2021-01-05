@@ -40,7 +40,7 @@ namespace PolarisDesk.API
             services.AddTransient<ICrudService<Ticket,Guid>, TicketServiceMock>();
             services.AddTransient<ICrudService<TicketStatus, Guid>, TicketStatusService<TicketStatus, Guid>>();
             services.AddTransient<ICrudService<TicketPriority, Guid>, TicketPriorityService<TicketPriority, Guid>>();
-            services.AddTransient<ICrudService<Customer, Guid>, CustomerService<Customer, Guid>>();
+            services.AddTransient<ICrudService<Customer, Guid>, CustomerServiceMock>();
 #endif
 
 #if !DEBUG
