@@ -5,7 +5,6 @@
 
 @if (currentCustomer == null && customers != null)
 {
-
     <MudTable Items="@customers" Dense="@dense" Hover="@hover" Filter="new Func<Customer,bool>(FilterFunc)">
         <ToolBarContent>
             <MudText Typo="Typo.h6"><MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="OnNew">New Customer</MudButton></MudText>
