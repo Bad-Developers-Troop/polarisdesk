@@ -55,7 +55,13 @@ namespace PolarisDesk.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PolarisDesk.API", Version = "v1" });
             });
 
-            services.AddCors(o => o.AddPolicy("AllowAllCors", builder => { builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); }));
+            var allowedorigins = Configuration.GetValue<string>("AllowedOrigins")?.Split(",") ?? new string[0];
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AllowedOrigins", builder => { builder.WithOrigins(allowedorigins).AllowAnyHeader(); });
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,7 +74,7 @@ namespace PolarisDesk.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PolarisDesk.API v1"));
             }
 
-            app.UseCors("AllowAllCors");
+            app.UseCors("AllowedOrigins");
 
             app.UseHttpsRedirection();
 
