@@ -32,6 +32,16 @@ namespace PolarisDesk.API.Controllers
           //      new TicketStatus() { Name= "Pending",Created = DateTime.Now },
           //  };
 
+=========
+            //_ticketStatusService.GetList();
+
+            return new List<TicketStatus>()
+            {
+                new TicketStatus() {Name= "Open",Created = DateTime.Now, ID = Guid.NewGuid()},
+                new TicketStatus() {Name= "Close",Created = DateTime.Now, ID = Guid.NewGuid() },
+                new TicketStatus() {Name= "Pending",Created = DateTime.Now, ID = Guid.NewGuid()},
+            };
+>>>>>>>>> Temporary merge branch 2
         }
 
 
