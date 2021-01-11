@@ -9,6 +9,8 @@ using PolarisDesk.API.Interface;
 using PolarisDesk.API.Services;
 using PolarisDesk.Models;
 using System;
+using Microsoft.EntityFrameworkCore;
+using PolarisDesk.API.Data;
 
 namespace PolarisDesk.API
 {
@@ -24,7 +26,9 @@ namespace PolarisDesk.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddDbContext<PolarisDeskContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddControllers();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
