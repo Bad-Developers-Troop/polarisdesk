@@ -1,5 +1,6 @@
 ﻿using Bogus.DataSets;
 using Microsoft.EntityFrameworkCore;
+using PolarisDesk.Models;
 using PolarisDesk.Models.Days;
 using PolarisDesk.Models.Requests;
 using PolarisDesk.Models.Stampings;
@@ -25,6 +26,7 @@ namespace PolarisDesk.API.Data
         public DbSet<Request> Request { get; set; }
         public DbSet<Holiday> Holidays { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

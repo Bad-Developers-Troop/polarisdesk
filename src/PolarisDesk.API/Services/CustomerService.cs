@@ -1,33 +1,47 @@
-﻿using PolarisDesk.API.Interface;
+﻿using PolarisDesk.API.Data;
+using PolarisDesk.API.Interface;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PolarisDesk.API.Services
 {
     public class CustomerService<T, TKey> : ICrudService<T, TKey> where T : class
     {
-        public Task Create(T item)
+        private readonly PolarisDeskContext polarisDeskContext;
+
+        public CustomerService(PolarisDeskContext polarisDeskContext)
         {
-            throw new System.NotImplementedException();
+            this.polarisDeskContext = polarisDeskContext;
         }
 
-        public Task Delete(TKey id)
+        public Task Create(T item)
         {
-            throw new System.NotImplementedException();
+            this.polarisDeskContext.Set<T>().Add(item);
+            return this.polarisDeskContext.SaveChangesAsync();
+        }
+
+        public async Task Delete(TKey id)
+        {
+            var entity = await this.polarisDeskContext.Set<T>().FindAsync(id);
+
+            this.polarisDeskContext.Set<T>().Remove(entity);
+            await this.polarisDeskContext.SaveChangesAsync();
         }
 
         public Task<T> Get(TKey id)
         {
-            throw new System.NotImplementedException();
+            return this.polarisDeskContext.Set<T>().FindAsync(id).AsTask();
         }
 
-        public Task<T[]> GetList()
+        public async Task<T[]> GetList()
         {
-            throw new System.NotImplementedException();
+            return this.polarisDeskContext.Set<T>().AsEnumerable().ToArray();
         }
 
         public Task Update(T item)
         {
-            throw new System.NotImplementedException();
+            this.polarisDeskContext.Set<T>().Update(item);
+            return this.polarisDeskContext.SaveChangesAsync();
         }
     }
 }
