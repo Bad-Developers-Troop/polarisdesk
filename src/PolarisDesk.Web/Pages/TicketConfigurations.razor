@@ -1,5 +1,4 @@
 ﻿@page "/ticketconf"
-@inject HttpClient Http
 @attribute [Authorize]
 
 <h2>Ticket configuration</h2>
@@ -36,34 +35,3 @@
         </MudItem>
     </MudGrid>
 </MudContainer>
-
-<br />
-
-@code
-{
-    private TicketPriority[] ticketPriority;
-    private TicketStatus[] ticketStatuses;
-
-    private TicketPriority currentPriority;
-    private TicketStatus currentStatus;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await ShowPriority();
-        await ShowStatus();
-    }
-
-
-    private async Task ShowPriority()
-    {
-        currentPriority = null;
-        ticketPriority = await Http.GetFromJsonAsync<TicketPriority[]>("https://localhost:44312/api/TicketPriority");
-    }
-
-    private async Task ShowStatus()
-    {
-        currentStatus = null;
-        ticketStatuses = await Http.GetFromJsonAsync<TicketStatus[]>("https://localhost:44312/api/TicketStatus");
-    }
-
-}
