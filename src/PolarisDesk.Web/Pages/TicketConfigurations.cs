@@ -24,8 +24,7 @@ namespace PolarisDesk.Web.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            await ShowPriority();
-            await ShowStatus();
+           await Task.WhenAll(ShowPriority(), ShowStatus());
         }
 
 
