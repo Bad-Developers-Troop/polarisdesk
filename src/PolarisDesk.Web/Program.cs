@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using MudBlazor;
 using MudBlazor.Services;
+using PolarisDesk.Web.Services;
 
 namespace PolarisDesk.Web
 {
@@ -19,6 +20,9 @@ namespace PolarisDesk.Web
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
+
+            builder.Services.AddHttpClient<ITicketPriorityDataService, TicketPriorityDataService>(client => client.BaseAddress = new Uri("https://localhost:44312/"));
+            builder.Services.AddHttpClient<ITicketStatusDataService, TicketStatusDataService>(client => client.BaseAddress = new Uri("https://localhost:44312/"));
 
             builder.Services.AddOidcAuthentication(options =>
             {
