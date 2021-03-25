@@ -27,16 +27,18 @@ namespace PolarisDesk.API.Controllers
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
-        public Customer Get(Guid id)
+        public async Task<Customer> Get(Guid id)
         {
-            return new Customer() { Name = "Customer001", Description = "Description01", Description2 = "Description2-01", Address = "Address01", City = "City01", Zip = "Zip01", Note = "Note01"};
+            return await _customerService.Get(id);
+
+            //return new Customer() { Name = "Customer001", Description = "Description01", Description2 = "Description2-01", Address = "Address01", City = "City01", Zip = "Zip01", Note = "Note01"};
         }
 
         // POST api/<ValuesController>
         [HttpPost]
-        public void Post([FromBody] Customer value)
+        public async Task Post([FromBody] Customer value)
         {
-
+            await _customerService.Create(value);
         }
 
         // PUT api/<ValuesController>/5

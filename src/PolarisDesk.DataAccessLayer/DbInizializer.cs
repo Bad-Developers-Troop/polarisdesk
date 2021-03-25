@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PolarisDesk.API.Data
+namespace PolarisDesk.DataAccessLayer
 {
 
     public static class DbInitializer

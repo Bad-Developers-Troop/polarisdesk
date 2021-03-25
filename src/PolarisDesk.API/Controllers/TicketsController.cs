@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PolarisDesk.API.Interface;
+using PolarisDesk.API.Managers;
 using PolarisDesk.Models;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace PolarisDesk.API.Controllers
     public class TicketsController : ControllerBase
     {
         private readonly ICrudService<Ticket, Guid> _ticketService;
+        private readonly ITicketsManager ticketsManager;
 
-        public TicketsController(ICrudService<Ticket, Guid> ticketService)
+        public TicketsController(ICrudService<Ticket, Guid> ticketService, ITicketsManager ticketsManager)
         {
             _ticketService = ticketService;
+            this.ticketsManager = ticketsManager;
         }
 
         [HttpGet]

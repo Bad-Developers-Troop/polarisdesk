@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolarisDesk.API", "PolarisD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolarisDesk.Models", "PolarisDesk.Models\PolarisDesk.Models.csproj", "{8913C315-060B-433C-B388-1054920EC79C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolarisDesk.DataAccessLayer", "PolarisDesk.DataAccessLayer\PolarisDesk.DataAccessLayer.csproj", "{19D0AFBC-5ED6-45B0-808D-AA3BE3DB5E1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{8913C315-060B-433C-B388-1054920EC79C}.Release|x64.Build.0 = Release|Any CPU
 		{8913C315-060B-433C-B388-1054920EC79C}.Release|x86.ActiveCfg = Release|Any CPU
 		{8913C315-060B-433C-B388-1054920EC79C}.Release|x86.Build.0 = Release|Any CPU
+		{19D0AFBC-5ED6-45B0-808D-AA3BE3DB5E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19D0AFBC-5ED6-45B0-808D-AA3BE3DB5E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19D0AFBC-5ED6-45B0-808D-AA3BE3DB5E1E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{19D0AFBC-5ED6-45B0-808D-AA3BE3DB5E1E}.Debug|x64.Build.0 = Debug|Any CPU
+		{19D0AFBC-5ED6-45B0-808D-AA3BE3DB5E1E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{19D0AFBC-5ED6-45B0-808D-AA3BE3DB5E1E}.Debug|x86.Build.0 = Debug|Any CPU
+		{19D0AFBC-5ED6-45B0-808D-AA3BE3DB5E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19D0AFBC-5ED6-45B0-808D-AA3BE3DB5E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19D0AFBC-5ED6-45B0-808D-AA3BE3DB5E1E}.Release|x64.ActiveCfg = Release|Any CPU
+		{19D0AFBC-5ED6-45B0-808D-AA3BE3DB5E1E}.Release|x64.Build.0 = Release|Any CPU
+		{19D0AFBC-5ED6-45B0-808D-AA3BE3DB5E1E}.Release|x86.ActiveCfg = Release|Any CPU
+		{19D0AFBC-5ED6-45B0-808D-AA3BE3DB5E1E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

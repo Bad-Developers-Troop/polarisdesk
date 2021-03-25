@@ -5,7 +5,6 @@
 
 @if (currentCustomer == null && customers != null)
 {
-
     <MudTable Items="@customers" Dense="@dense" Hover="@hover" Filter="new Func<Customer,bool>(FilterFunc)">
         <ToolBarContent>
             <MudText Typo="Typo.h6"><MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="OnNew">New Customer</MudButton></MudText>
@@ -64,9 +63,9 @@
     {
         if (string.IsNullOrWhiteSpace(search_string))
             return true;
-        if (element.Name.Contains(search_string))
+        if (element.Name.ToLowerInvariant().Contains(search_string.ToLowerInvariant()))
             return true;
-        if (element.Description.Contains(search_string))
+        if (element.Description.ToLowerInvariant().Contains(search_string.ToLowerInvariant()))
             return true;
         return false;
     }

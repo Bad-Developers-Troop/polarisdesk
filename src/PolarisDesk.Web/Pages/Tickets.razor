@@ -1,0 +1,59 @@
+﻿@page "/tickets"
+
+@attribute [Authorize]
+@inject HttpClient Http
+
+@if (tickets != null)
+{
+    <MudTable Items="@tickets" Dense="@dense" Hover="@hover" Filter="new Func<Ticket, bool>(FilterFunc)">
+        <ToolBarContent>
+            <MudToolBarSpacer />
+            <MudTextField @bind-Value="search_string" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh>Code</MudTh>
+            <MudTh>Title</MudTh>
+            <MudTh>Description</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Code">@context.Code</MudTd>
+            <MudTd DataLabel="Title">@context.Title</MudTd>
+            <MudTd DataLabel="Description">@context.Description</MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <MudTablePager />
+        </PagerContent>
+    </MudTable>
+}
+
+@code
+{
+
+    bool dense = false;
+    bool hover = true;
+    bool fixed_header = false;
+    string search_string = "";
+
+    private Ticket[] tickets;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetTickets();
+    }
+
+    private async Task GetTickets()
+    {
+        tickets = await Http.GetFromJsonAsync<Ticket[]>("https://localhost:44312/api/tickets");
+    }
+
+    bool FilterFunc(Ticket element)
+    {
+        if (string.IsNullOrWhiteSpace(search_string))
+            return true;
+        if (element.Code.ToLowerInvariant().Contains(search_string.ToLowerInvariant()))
+            return true;
+        if (element.Title.ToLowerInvariant().Contains(search_string.ToLowerInvariant()))
+            return true;
+        return false;
+    }
+}
