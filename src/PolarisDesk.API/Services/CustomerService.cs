@@ -1,5 +1,6 @@
-﻿using PolarisDesk.API.Data;
+﻿using Bogus;
 using PolarisDesk.API.Interface;
+using PolarisDesk.DataAccessLayer;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,8 +15,16 @@ namespace PolarisDesk.API.Services
             this.polarisDeskContext = polarisDeskContext;
         }
 
-        public Task Create(T item)
+        public async Task Create(T item)
         {
+            var strategy = polarisDeskContext.Database.CreateExecutionStrategy();
+            await strategy.ExecuteAsync(async () => 
+            {
+                using var transaction = await polarisDeskContext.Database.BeginTransactionAsync();
+                //... 
+                await transaction.CommitAsync();
+            });
+
             this.polarisDeskContext.Set<T>().Add(item);
             return this.polarisDeskContext.SaveChangesAsync();
         }

@@ -7,7 +7,6 @@ namespace PolarisDesk.Models
 {
     public class Ticket : PolarisTicketBase
     {
-
         public Guid ID { get; set; }
 
         public string Code { get; set; }
@@ -20,8 +19,6 @@ namespace PolarisDesk.Models
 
         public TicketPriority TicketPriority { get; set; }
 
-        [ForeignKey("TicketID")]
         public ICollection<TicketHistory> TicketHistories { get; set; }
-
     }
 }
